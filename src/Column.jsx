@@ -2,7 +2,7 @@ import React from "react";
 
 function Column(){
     return(
-        <div class="column">
+        <div>
             <p>To-Do</p>
         </div>
     )
