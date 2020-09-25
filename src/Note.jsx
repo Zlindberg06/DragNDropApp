@@ -3,7 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 
 function Note(props) {
   return (
-    <Draggable draggableId="draggable-1" index={0}>
+    <Draggable draggableId={props.id} index={props.index}>
       {(provided) => (
         <div
           className="note"

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Column from "./Column";
 import Note from "./Note";
 import { DragDropContext } from "react-beautiful-dnd";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [taskText, setTaskText] = useState("");
@@ -29,7 +30,7 @@ function App() {
         <Column
           showNotes={notes.map((note, index) => {
             return (
-              <Note key={index} id={index} noteContent={note} index={index} />
+              <Note key={index} id={uuidv4()} noteContent={note} index={index} />
             );
           })}
         />
