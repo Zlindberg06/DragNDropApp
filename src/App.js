@@ -19,6 +19,16 @@ function App() {
     event.preventDefault();
   }
 
+  function handleOnDragEnd(result){
+
+    const newNotesArray = Array.from(notes);
+    const [reorderedItem] = newNotesArray.splice(result.source.index, 1);
+    newNotesArray.splice(result.destination.index, 0, reorderedItem);
+
+    setNote(newNotesArray);
+
+  }
+
   return (
     <div>
       <form>
@@ -26,7 +36,7 @@ function App() {
         <input type="text" value={taskText} onChange={handleChange} />
         <button onClick={handleClick}>Add</button>
       </form>
-      <DragDropContext onDragEnd={() => {}}>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
         <Column
           showNotes={notes.map((note, index) => {
             return (
