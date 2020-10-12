@@ -19,14 +19,22 @@ function App() {
     event.preventDefault();
   }
 
+  function displayNotes() {
+    return notes.map((note, index) => {
+      return (
+        <Note key={index} id={uuidv4()} noteContent={note} index={index} />
+      );
+    });
+  }
+
+
   function handleOnDragEnd(result){
 
     const newNotesArray = Array.from(notes);
     const [reorderedItem] = newNotesArray.splice(result.source.index, 1);
     newNotesArray.splice(result.destination.index, 0, reorderedItem);
-
+    if(!result.destination) return;
     setNote(newNotesArray);
-
   }
 
   return (
@@ -36,15 +44,22 @@ function App() {
         <input type="text" value={taskText} onChange={handleChange} />
         <button onClick={handleClick}>Add</button>
       </form>
+      <div className="container">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Column
-          showNotes={notes.map((note, index) => {
-            return (
-              <Note key={index} id={uuidv4()} noteContent={note} index={index} />
-            );
-          })}
+        dropId={uuidv4()}
+        text="To-Do"
+          showNotes={displayNotes()}
         />
+        <Column
+        dropId={uuidv4()} 
+        text="In Progress"
+        />
+        <Column
+        dropId={uuidv4()} 
+        text="Done"/>
       </DragDropContext>
+      </div>
     </div>
   );
 }

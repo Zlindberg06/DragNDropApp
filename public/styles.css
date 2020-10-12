@@ -4,8 +4,21 @@
 
 }
 
+
+/* Column CSS */
+.container {
+display:flex;
+text-align: justify;
+justify-content: space-around;
+
+}
+
+
+
+
 .taskColumn {
     border: 1px solid;
     height: 400px;
     width: 300px;
+    display: inline-block;
 }
